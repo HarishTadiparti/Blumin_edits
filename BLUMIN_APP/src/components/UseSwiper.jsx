@@ -51,8 +51,8 @@ const SwiperComponent = () => {
                 </div>
             </SwiperSlide>
             <SwiperSlide >
-                <div className="banner flex flex-col-reverse md:rounded-xl rounded-md overflow-hidden md:flex-row justify-between items-stretch md:justify-start md:items-center font-mont bg-[#39a9f1] h-72">
-                    <div className="left space-y-4 bg-[#39a9f1] flex flex-col justify-center items-center md:py-auto md:items-start md:ml-12 py-12 md:py-6">
+                <div className="banner flex flex-col-reverse md:rounded-xl rounded-md overflow-hidden md:flex-row justify-between items-stretch md:justify-start md:items-center font-mont bg-[#38b6ff]  h-72">
+                    <div className="left space-y-4 bg-[#38b6ff]  flex flex-col justify-center items-center md:py-auto md:items-start md:ml-12 py-12 md:py-6">
                         <h1 class="text-xl font-semibold text-center md:text-left md:text-2xl lg:text-4xl md:w-[70%] w-[60%] text-white">
                             What we offer ?
                         </h1>
@@ -74,8 +74,8 @@ const SwiperComponent = () => {
                 </div>
             </SwiperSlide>
             <SwiperSlide >
-                <div className="banner flex flex-col-reverse md:rounded-xl rounded-md overflow-hidden md:flex-row justify-between items-stretch md:justify-start md:items-center font-mont bg-[#39a9f1] h-72">
-                    <div className="left space-y-4 bg-[#39a9f1] flex flex-col justify-center items-center md:py-auto md:items-start md:ml-12 py-12 md:py-6">
+                <div className="banner flex flex-col-reverse md:rounded-xl rounded-md overflow-hidden md:flex-row justify-between items-stretch md:justify-start md:items-center font-mont bg-[#38b6ff] h-72">
+                    <div className="left space-y-4 bg-[#38b6ff]  flex flex-col justify-center items-center md:py-auto md:items-start md:ml-12 py-12 md:py-6">
                         <h1 class="text-xl font-semibold text-center md:text-left md:text-2xl lg:text-4xl md:w-[70%] w-[60%] text-white">
                             Why Choose BLUMIN ?
                         </h1>

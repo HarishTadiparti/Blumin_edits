@@ -22,7 +22,7 @@ const About = () => {
             </div>
 
             <div className="container mx-auto py-8">
-                <div className="bg-[#c2a990] rounded-2xl shadow-lg p-8">
+                <div className="bg-white rounded-2xl shadow-lg p-8">
                     <h3 className="text-2xl font-semibold text-center mb-6">BLUMIN — OVERVIEW</h3>
                     <div className="flex flex-col md:flex-row items-center justify-center md:justify-between">
                         <div className="w-full md:w-2/5 mb-4 md:mb-0">

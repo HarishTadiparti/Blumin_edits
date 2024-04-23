@@ -36,7 +36,7 @@ const ContactUs = () => {
                             </div>
                         </div>
                     </div>
-                    <div className="lg:w-1/3 md:w-1/2 bg-white flex flex-col md:ml-auto w-full md:py-8 mt-8 md:mt-0">
+                    <div className="lg:w-1/3 md:w-1/2 bg-white flex flex-col md:ml-auto w-full md:px-8 md:py-8 mt-8 md:mt-0 rounded-2xl">
                         <p className="leading-relaxed mb-5 text-gray-600">We’re here to answer any questions you may have about our services, collaborations, or partnerships. Reach out to us via the contact form below or directly through our contact details. We look forward to hearing from you</p>
                         <div className="relative mb-4">
                             <label htmlFor="name" className="leading-7 text-sm text-gray-600">Name</label>

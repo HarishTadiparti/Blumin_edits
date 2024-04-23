@@ -9,9 +9,9 @@ const Academia = () => {
                 <h1 className="text-3xl font-bold text-center mb-6">Academia</h1>
                 <Tabs>
                     <TabList className="flex justify-center mb-8">
-                        <Tab className="px-4 py-2 bg-[#064c66] rounded-md mr-4 cursor-pointer text-white">Universities</Tab>
-                        <Tab className="px-4 py-2 bg-[#064c66] rounded-md mr-4 cursor-pointer text-white">Students</Tab>
-                        <Tab className="px-4 py-2 bg-[#064c66] rounded-md cursor-pointer text-white">Professors</Tab>
+                        <Tab className="px-4 py-2 bg-[#38b6ff] hover:bg-[#064c66] rounded-md mr-4 cursor-pointer text-white">Universities</Tab>
+                        <Tab className="px-4 py-2 bg-[#38b6ff] rounded-md mr-4 cursor-pointer text-white">Students</Tab>
+                        <Tab className="px-4 py-2 bg-[#38b6ff] rounded-md cursor-pointer text-white">Professors</Tab>
                     </TabList>
                     <TabPanel>
                         <div className="container mx-auto py-12 px-4">

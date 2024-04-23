@@ -14,7 +14,7 @@ const FeatureCard = ({ image, title, data }) => {
     };
 
     return (
-        <motion.div ref={ref} variants={cardVariants} initial="hidden" animate={inView ? "visible" : "hidden"} className="max-w-sm rounded overflow-hidden shadow-lg">
+        <motion.div ref={ref} variants={cardVariants} initial="hidden" animate={inView ? "visible" : "hidden"} className="max-w-sm rounded-2xl bg-white overflow-hidden shadow-lg">
             {/* <img src={image} alt="Feature" className="mx-auto rounded-lg h-52" /> */}
             <div className="rounded-lg h-64 p-4">
                 <img alt="content" className="object-cover object-center h-full w-full" src={image} />

@@ -17,7 +17,7 @@ const Industry = () => {
                     <h1 className="text-6xl font-medium title-font text-gray-900 mb-12 text-center">INDUSTRY</h1>
                 </div>
             </section>
-            <div className="container mx-auto px-5 py-10 bg-[#c2a990]">
+            <div className="container mx-auto px-5 py-10 bg-white rounded-2xl">
                 <div className="flex flex-wrap -mx-4">
                     <div className="w-full md:w-1/2 px-4 mb-6 md:mb-0 flex items-center justify-center">
                         <h2 className="text-4xl font-medium text-gray-900">How we aim to help the Industry?</h2>
@@ -58,7 +58,7 @@ const Industry = () => {
             <section className="text-gray-600 body-font">
                 <div className="container px-5 py-24 mx-auto">
                     <div className="flex flex-wrap sm:-m-4 -mx-4 -mb-10 -mt-4">
-                        <div className="p-4 md:w-1/3 sm:mb-0 mb-6">
+                        <div className="p-4 md:w-1/3 sm:mb-0 mb-6 bg-white">
                             <div className="rounded-lg h-64 overflow-hidden">
                                 <img alt="content" className="object-cover object-center h-full w-full" src="https://dummyimage.com/1203x503" />
                             </div>
@@ -68,7 +68,7 @@ const Industry = () => {
                                 <li>Arrange introductory meetings with industry representatives and gather insights.</li>
                             </ul>
                         </div>
-                        <div className="p-4 md:w-1/3 sm:mb-0 mb-6">
+                        <div className="p-4 md:w-1/3 sm:mb-0 mb-6 bg-white">
                             <div className="rounded-lg h-64 overflow-hidden">
                                 <img alt="content" className="object-cover object-center h-full w-full" src="https://dummyimage.com/1204x504" />
                             </div>
@@ -78,7 +78,7 @@ const Industry = () => {
                                 <li>Collaborate with stakeholders to define challenges and opportunities.</li>
                             </ul>
                         </div>
-                        <div className="p-4 md:w-1/3 sm:mb-0 mb-6">
+                        <div className="p-4 md:w-1/3 sm:mb-0 mb-6 bg-white">
                             <div className="rounded-lg h-64 overflow-hidden">
                                 <img alt="content" className="object-cover object-center h-full w-full" src="https://dummyimage.com/1205x505" />
                             </div>
