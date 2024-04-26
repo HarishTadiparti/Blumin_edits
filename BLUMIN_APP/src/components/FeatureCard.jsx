@@ -14,16 +14,17 @@ const FeatureCard = ({ image, title, data }) => {
     };
 
     return (
-        <motion.div ref={ref} variants={cardVariants} initial="hidden" animate={inView ? "visible" : "hidden"} className="max-w-sm rounded-2xl bg-white overflow-hidden shadow-lg">
-            {/* <img src={image} alt="Feature" className="mx-auto rounded-lg h-52" /> */}
-            <div className="rounded-lg h-64 p-4">
-                <img alt="content" className="object-cover object-center h-full w-full" src={image} />
-            </div>
-            <div className="px-6 py-4">
-                <div className="font-bold text-2xl mb-2">{title}</div>
-                <p className="text-gray-700 text-justify">{data}</p>
-            </div>
-        </motion.div>
+        <div className='shadow-sm rounded-2xl hover:shadow-lg transition duration-300 ease-in-out transform hover:-translate-y-1'>
+            <motion.div ref={ref} variants={cardVariants} initial="hidden" animate={inView ? "visible" : "hidden"} className="bg-white max-w-sm rounded-2xl overflow-hidden">
+                <div className="rounded-lg h-64 p-4">
+                    <img alt="content" className="object-cover object-center h-full w-full" src={image} />
+                </div>
+                <div className="px-6 py-4">
+                    <div className="font-bold text-2xl mb-2">{title}</div>
+                    <p className="text-gray-700 text-justify">{data}</p>
+                </div>
+            </motion.div>
+        </div>
     );
 }
 

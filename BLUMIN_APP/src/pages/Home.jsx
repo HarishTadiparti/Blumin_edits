@@ -15,14 +15,17 @@ const Home = () => {
             <div className='space-y-32'>
                 <div className='mt-10'>
                     <motion.div className='mb-10' initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5 }}>
-                        <div className="relative w-full overflow-hidden h-96">
-                            <img src='/home-banner.jpg' alt="Banner" className="w-full h-full object-cover" />
+                        <div className="relative overflow-hidden">
+                            <img src='/home-banner.jpg' alt="Banner" className="w-screen h-screen object-cover" />
                             <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-white text-center">
                                 <h1 className="text-4xl md:text-6xl font-bold">Welcome to BLUMIN</h1>
+                                <p className="text-lg md:text-xl">Ideate. Innovate. Illuminate.</p>
                             </div>
                         </div>
                     </motion.div>
                 </div>
+
+
                 <SwiperComponent />
                 <div>
                     <motion.div className='mb-10' initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5 }}>
@@ -71,23 +74,30 @@ const Home = () => {
                 <motion.div className='mb-10' initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5 }}>
                     <Heading align='center' weight='bold' size='8'>Why Choose BLUMIN</Heading>
                 </motion.div>
-                <div className='flex space-x-10 px-5'>
-                    <FeatureCard
-                        image='./cardimage1.png'
-                        title='Experience'
-                        data='With years of experience in facilitating successful collaborations, BLUMIN brings unparalleled expertise to every partnership.'
-                    />
-                    <FeatureCard
-                        image='./cardimage2.png'
-                        title='Innovation'
-                        data='Our commitment to innovation drives us to continually explore new opportunities and push the boundaries of what’s possible.'
-                    />
-                    <FeatureCard
-                        image='./cardimage3.png'
-                        title='Impact'
-                        data='Join a community dedicated to making a meaningful impact on society through research-driven solutions and industry partnerships.'
-                    />
+                <div class='flex flex-wrap justify-center px-5'>
+                    <div class='w-full sm:w-auto sm:flex-1 sm:max-w-xs md:max-w-md lg:max-w-lg xl:max-w-xl mx-2 my-4'>
+                        <FeatureCard
+                            image='./cardimage1.png'
+                            title='Experience'
+                            data='With years of experience in facilitating successful collaborations, BLUMIN brings unparalleled expertise to every partnership.'
+                        />
+                    </div>
+                    <div class='w-full sm:w-auto sm:flex-1 sm:max-w-xs md:max-w-md lg:max-w-lg xl:max-w-xl mx-2 my-4'>
+                        <FeatureCard
+                            image='./cardimage2.png'
+                            title='Innovation'
+                            data='Our commitment to innovation drives us to continually explore new opportunities and push the boundaries of what’s possible.'
+                        />
+                    </div>
+                    <div class='w-full sm:w-auto sm:flex-1 sm:max-w-xs md:max-w-md lg:max-w-lg xl:max-w-xl mx-2 my-4'>
+                        <FeatureCard
+                            image='./cardimage3.png'
+                            title='Impact'
+                            data='Join a community dedicated to making a meaningful impact on society through research-driven solutions and industry partnerships.'
+                        />
+                    </div>
                 </div>
+
             </div>
         </div>
     );

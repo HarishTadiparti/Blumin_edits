@@ -1,21 +1,21 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import 'react-tabs/style/react-tabs.css';
 
 const Academia = () => {
+    const [activeTabIndex, setActiveTabIndex] = useState(0);
     return (
         <div className="min-h-screen py-8 px-4">
             <div className="mb-8">
                 <h1 className="text-3xl font-bold text-center mb-6">Academia</h1>
-                <Tabs>
+                <Tabs selectedIndex={activeTabIndex} onSelect={index => setActiveTabIndex(index)}>
                     <TabList className="flex justify-center mb-8">
-                        <Tab className="px-4 py-2 bg-[#38b6ff] hover:bg-[#064c66] rounded-md mr-4 cursor-pointer text-white">Universities</Tab>
-                        <Tab className="px-4 py-2 bg-[#38b6ff] rounded-md mr-4 cursor-pointer text-white">Students</Tab>
-                        <Tab className="px-4 py-2 bg-[#38b6ff] rounded-md cursor-pointer text-white">Professors</Tab>
+                        <Tab className={`px-4 py-2 rounded-md mr-4 cursor-pointer text-white ${activeTabIndex === 0 ? 'bg-[#064c66]' : 'bg-[#38b6ff] hover:bg-[#39a9f1]'}`}>Universities</Tab>
+                        <Tab className={`px-4 py-2 rounded-md mr-4 cursor-pointer text-white ${activeTabIndex === 1 ? 'bg-[#064c66]' : 'bg-[#38b6ff] hover:bg-[#39a9f1]'}`}>Students</Tab>
+                        <Tab className={`px-4 py-2 rounded-md mr-4 cursor-pointer text-white ${activeTabIndex === 2 ? 'bg-[#064c66]' : 'bg-[#38b6ff] hover:bg-[#39a9f1]'}`}>Professors</Tab>
                     </TabList>
                     <TabPanel>
                         <div className="container mx-auto py-12 px-4">
-
                             <h2 className="text-center text-2xl font-semibold mb-8">How BLUMIN helps UNIVERSITIES</h2>
                             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
                                 <div className="bg-white rounded-lg shadow-md hover:shadow-lg transition duration-300 ease-in-out transform hover:-translate-y-1">

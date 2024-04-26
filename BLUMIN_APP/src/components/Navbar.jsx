@@ -10,11 +10,11 @@ const Navbar = () => {
         { name: "Academia", link: "/academia" },
         { name: "Industry", link: "/industry" },
         { name: "Contact Us", link: "/contact-us" },
-        { name: "Projects", link: "/projects" }
+        { name: "Register", link: "/register" }
     ];
     const [open, setOpen] = useState(false);
     return (
-        <div className='shadow-md w-full fixed top-0 left-0 z-10'>
+        <div className='shadow-sm w-full fixed top-0 left-0 z-10'>
             <div className='md:flex items-center justify-between bg-white py-4 md:px-10 px-7'>
                 <div className='font-bold text-2xl cursor-pointer flex items-center gap-1'>
                     <Link to='/'><img alt="content" className="object-contain h-12 md:h-[10vh]" src={logo} /></Link>

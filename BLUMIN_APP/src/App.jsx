@@ -8,12 +8,13 @@ import Industry from './pages/Industry'
 import ContactUs from './pages/ContactUs'
 import Projects from './pages/Projects'
 import Footer from './components/Footer'
+import Register from './pages/Register'
 
 const App = () => {
   return (
     <BrowserRouter>
       <Navbar />
-      <div className="mt-16 p-5 min-h-full bg-[#e6f3fb]">
+      <div className="mt-24 p-5 min-h-full bg-[#e6f3fb]">
         <Routes>
           <Route path='/' element={<Home />} />
           <Route path='/about' element={<About />} />
@@ -21,6 +22,7 @@ const App = () => {
           <Route path='/industry' element={<Industry />} />
           <Route path='/contact-us' element={<ContactUs />} />
           <Route path='/projects' element={<Projects />} />
+          <Route path='/register' element={<Register />} />
         </Routes>
       </div>
       <Footer />
