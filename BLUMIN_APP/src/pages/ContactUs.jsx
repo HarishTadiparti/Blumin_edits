@@ -44,27 +44,27 @@ const ContactUs = () => {
   };
 
   const validateForm = (data) => {
-    let errors = {};
+    const newErrors = {};
     if (!data.name.trim()) {
-      errors.name = "Name is required";
+      newErrors.name = "Name is required";
     } else if (data.name.trim().length < 2) {
-      errors.name = "Name should be at least 2 characters";
+      newErrors.name = "Name should be at least 2 characters";
     }
     if (!data.email.trim()) {
-      errors.email = "Email is required";
+      newErrors.email = "Email is required";
     } else if (!isValidEmail(data.email)) {
-      errors.email = "Invalid email address";
+      newErrors.email = "Invalid email address";
     }
     if (!data.organization.trim()) {
-      errors.organization = "Organization is required";
+      newErrors.organization = "Organization is required";
     }
     if (!data.phone.trim()) {
-      errors.phone = "Phone number is required";
+      newErrors.phone = "Phone number is required";
     }
     if (!data.message.trim()) {
-      errors.message = "Message is required";
+      newErrors.message = "Message is required";
     }
-    return errors;
+    return newErrors;
   };
 
   const isValidEmail = (email) => {
