@@ -6,7 +6,7 @@ const Register = () => {
   const [password, setPassword] = useState("");
   const [cpassword, setCpassword] = useState("");
   const [form, setForm] = useState({
-    catagory: "",
+    catagory: "Student",
     first_name: "",
     last_name: "",
     ins_name: "",
@@ -33,17 +33,6 @@ const Register = () => {
     });
   };
 
-  const handlePassword = (e) => {
-    const newPassword = e.target.value;
-    setCpassword(newPassword);
-    if (password === newPassword && newPassword !== "") {
-      setForm({
-        ...form,
-        password: newPassword,
-      });
-    }
-  };
-
   const handleCatagory = (index) => {
     setActiveTabIndex(index);
     setForm({
@@ -53,13 +42,27 @@ const Register = () => {
   };
 
   const handleSubmit = (e) => {
-    console.log(form);
     e.preventDefault();
+
+    if (password !== cpassword) {
+      setError({
+        ...error,
+        password: "Passwords do not match",
+      });
+      return;
+    } else {
+      setForm({
+        ...form,
+        password: password,
+      });
+    }
+
     const validationErrors = validateForm(form);
+    console.log("Validation errors:", validationErrors);
     setError(validationErrors);
-    console.log(validationErrors);
+
     if (Object.keys(validationErrors).length === 0) {
-      console.log("Form submitted:", form);
+      console.log("No validation errors. Form data:", form);
       setForm({
         catagory: "",
         first_name: "",
@@ -109,7 +112,7 @@ const Register = () => {
   };
 
   return (
-    <div className="flex flex-col justify-center items-center w-full h-[100vh] px-5">
+    <div className="flex flex-col justify-center items-center w-full h-[100vh] my-32">
       <div className="xl:max-w-3xl bg-white rounded-xl w-full pb-6 sm:pb-10">
         <Tabs selectedIndex={activeTabIndex} onSelect={handleCatagory}>
           <TabList className="grid grid-cols-3 mb-5">
@@ -132,6 +135,12 @@ const Register = () => {
             </h1>
             <div className="w-full mt-8">
               <div className="mx-auto max-w-xs sm:max-w-md md:max-w-lg flex flex-col gap-4">
+                {error.first_name && (
+                  <span className="text-red-500">{error.first_name}</span>
+                )}
+                {error.last_name && (
+                  <span className="text-red-500">{error.last_name}</span>
+                )}
                 <div className="flex flex-col sm:flex-row gap-3">
                   <Input
                     color="blue"
@@ -155,6 +164,9 @@ const Register = () => {
                   className="w-full px-5 py-3 rounded-lg  font-medium border-2  text-sm focus:outline-none focus:border-2  focus:outline bg-gray-100 text-black focus:border-black"
                   onChange={handleChange}
                 />
+                {error.ins_name && (
+                  <span className="text-red-500">{error.ins_name}</span>
+                )}
                 <Input
                   color="blue"
                   label="Your Email*"
@@ -162,6 +174,9 @@ const Register = () => {
                   className="w-full px-5 py-3 rounded-lg  font-medium border-2  text-sm focus:outline-none focus:border-2  focus:outline bg-gray-100 text-black focus:border-black"
                   onChange={handleChange}
                 />
+                {error.email && (
+                  <span className="text-red-500">{error.email}</span>
+                )}
                 <Input
                   color="blue"
                   label="Your Phone*"
@@ -169,6 +184,9 @@ const Register = () => {
                   className="w-full px-5 py-3 rounded-lg  font-medium border-2  text-sm focus:outline-none focus:border-2  focus:outline bg-gray-100 text-black focus:border-black"
                   onChange={handleChange}
                 />
+                {error.phone && (
+                  <span className="text-red-500">{error.phone}</span>
+                )}
                 <Input
                   color="blue"
                   label="Your Password*"
@@ -177,16 +195,21 @@ const Register = () => {
                   className="w-full px-5 py-3 rounded-lg  font-medium border-2  text-sm focus:outline-none focus:border-2  focus:outline bg-gray-100 text-black focus:border-black"
                   onChange={(e) => setPassword(e.target.value)}
                 />
+                {error.password && (
+                  <span className="text-red-500">{error.password}</span>
+                )}
                 <Input
                   color="blue"
                   label="Confirm Password*"
                   type="password"
                   name="cpassword"
                   className="w-full px-5 py-3 rounded-lg  font-medium border-2  text-sm focus:outline-none focus:border-2  focus:outline bg-gray-100 text-black focus:border-black"
-                  onChange={handlePassword}
+                  onChange={(e) => setCpassword(e.target.value)}
                 />
-
-                <Button className="mt-5 tracking-wide font-semibold bg-[#39a9f1] text-gray-100 w-full py-4 rounded-lg hover:bg-[#1e88e5] transition-all duration-300 ease-in-out flex items-center justify-center focus:shadow-outline focus:outline-none">
+                <Button
+                  className="mt-5 tracking-wide font-semibold bg-[#39a9f1] text-gray-100 w-full py-4 rounded-lg hover:bg-[#1e88e5] transition-all duration-300 ease-in-out flex items-center justify-center focus:shadow-outline focus:outline-none"
+                  onClick={handleSubmit}
+                >
                   <svg
                     className="w-6 h-6 -ml-2"
                     fill="none"
@@ -194,7 +217,6 @@ const Register = () => {
                     strokeWidth="2"
                     strokeLinecap="round"
                     strokeLinejoin="round"
-                    onClick={handleSubmit}
                   >
                     <path d="M16 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2" />
                     <circle cx="8.5" cy="7" r="4" />
@@ -211,6 +233,12 @@ const Register = () => {
             </h1>
             <div className="w-full mt-8">
               <div className="mx-auto max-w-xs sm:max-w-md md:max-w-lg flex flex-col gap-4">
+                {error.first_name && (
+                  <span className="text-red-500">{error.first_name}</span>
+                )}
+                {error.last_name && (
+                  <span className="text-red-500">{error.last_name}</span>
+                )}
                 <div className="flex flex-col sm:flex-row gap-3">
                   <Input
                     color="blue"
@@ -234,6 +262,9 @@ const Register = () => {
                   className="w-full px-5 py-3 rounded-lg  font-medium border-2  text-sm focus:outline-none focus:border-2  focus:outline bg-gray-100 text-black focus:border-black"
                   onChange={handleChange}
                 />
+                {error.ins_name && (
+                  <span className="text-red-500">{error.ins_name}</span>
+                )}
                 <Input
                   color="blue"
                   label="Your Email*"
@@ -241,6 +272,9 @@ const Register = () => {
                   className="w-full px-5 py-3 rounded-lg  font-medium border-2  text-sm focus:outline-none focus:border-2  focus:outline bg-gray-100 text-black focus:border-black"
                   onChange={handleChange}
                 />
+                {error.email && (
+                  <span className="text-red-500">{error.email}</span>
+                )}
                 <Input
                   color="blue"
                   label="Your Phone*"
@@ -248,6 +282,9 @@ const Register = () => {
                   className="w-full px-5 py-3 rounded-lg  font-medium border-2  text-sm focus:outline-none focus:border-2  focus:outline bg-gray-100 text-black focus:border-black"
                   onChange={handleChange}
                 />
+                {error.phone && (
+                  <span className="text-red-500">{error.phone}</span>
+                )}
                 <Input
                   color="blue"
                   label="Your Password*"
@@ -256,15 +293,21 @@ const Register = () => {
                   className="w-full px-5 py-3 rounded-lg  font-medium border-2  text-sm focus:outline-none focus:border-2  focus:outline bg-gray-100 text-black focus:border-black"
                   onChange={(e) => setPassword(e.target.value)}
                 />
+                {error.password && (
+                  <span className="text-red-500">{error.password}</span>
+                )}
                 <Input
                   color="blue"
                   label="Confirm Password*"
                   type="password"
                   name="cpassword"
                   className="w-full px-5 py-3 rounded-lg  font-medium border-2  text-sm focus:outline-none focus:border-2  focus:outline bg-gray-100 text-black focus:border-black"
-                  onChange={handlePassword}
+                  onChange={(e) => setCpassword(e.target.value)}
                 />
-                <Button className="mt-5 tracking-wide font-semibold bg-[#39a9f1] text-gray-100 w-full py-4 rounded-lg hover:bg-[#1e88e5] transition-all duration-300 ease-in-out flex items-center justify-center focus:shadow-outline focus:outline-none">
+                <Button
+                  className="mt-5 tracking-wide font-semibold bg-[#39a9f1] text-gray-100 w-full py-4 rounded-lg hover:bg-[#1e88e5] transition-all duration-300 ease-in-out flex items-center justify-center focus:shadow-outline focus:outline-none"
+                  onClick={handleSubmit}
+                >
                   <svg
                     className="w-6 h-6 -ml-2"
                     fill="none"
@@ -272,7 +315,6 @@ const Register = () => {
                     strokeWidth="2"
                     strokeLinecap="round"
                     strokeLinejoin="round"
-                    onClick={handleSubmit}
                   >
                     <path d="M16 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2" />
                     <circle cx="8.5" cy="7" r="4" />
@@ -289,6 +331,12 @@ const Register = () => {
             </h1>
             <div className="w-full mt-8">
               <div className="mx-auto max-w-xs sm:max-w-md md:max-w-lg flex flex-col gap-4">
+                {error.first_name && (
+                  <span className="text-red-500">{error.first_name}</span>
+                )}
+                {error.last_name && (
+                  <span className="text-red-500">{error.last_name}</span>
+                )}
                 <div className="flex flex-col sm:flex-row gap-3">
                   <Input
                     color="blue"
@@ -312,6 +360,9 @@ const Register = () => {
                   className="w-full px-5 py-3 rounded-lg  font-medium border-2  text-sm focus:outline-none focus:border-2  focus:outline bg-gray-100 text-black focus:border-black"
                   onChange={handleChange}
                 />
+                {error.ins_name && (
+                  <span className="text-red-500">{error.ins_name}</span>
+                )}
                 <Input
                   color="blue"
                   label="Your Email*"
@@ -319,6 +370,9 @@ const Register = () => {
                   className="w-full px-5 py-3 rounded-lg  font-medium border-2  text-sm focus:outline-none focus:border-2  focus:outline bg-gray-100 text-black focus:border-black"
                   onChange={handleChange}
                 />
+                {error.email && (
+                  <span className="text-red-500">{error.email}</span>
+                )}
                 <Input
                   color="blue"
                   label="Your Phone*"
@@ -326,6 +380,9 @@ const Register = () => {
                   className="w-full px-5 py-3 rounded-lg  font-medium border-2  text-sm focus:outline-none focus:border-2  focus:outline bg-gray-100 text-black focus:border-black"
                   onChange={handleChange}
                 />
+                {error.phone && (
+                  <span className="text-red-500">{error.phone}</span>
+                )}
                 <Input
                   color="blue"
                   label="Your Password*"
@@ -334,15 +391,21 @@ const Register = () => {
                   className="w-full px-5 py-3 rounded-lg  font-medium border-2  text-sm focus:outline-none focus:border-2  focus:outline bg-gray-100 text-black focus:border-black"
                   onChange={(e) => setPassword(e.target.value)}
                 />
+                {error.password && (
+                  <span className="text-red-500">{error.password}</span>
+                )}
                 <Input
                   color="blue"
                   label="Confirm Password*"
                   type="password"
                   name="cpassword"
                   className="w-full px-5 py-3 rounded-lg  font-medium border-2  text-sm focus:outline-none focus:border-2  focus:outline bg-gray-100 text-black focus:border-black"
-                  onChange={handlePassword}
+                  onChange={(e) => setCpassword(e.target.value)}
                 />
-                <Button className="mt-5 tracking-wide font-semibold bg-[#39a9f1] text-gray-100 w-full py-4 rounded-lg hover:bg-[#1e88e5] transition-all duration-300 ease-in-out flex items-center justify-center focus:shadow-outline focus:outline-none">
+                <Button
+                  className="mt-5 tracking-wide font-semibold bg-[#39a9f1] text-gray-100 w-full py-4 rounded-lg hover:bg-[#1e88e5] transition-all duration-300 ease-in-out flex items-center justify-center focus:shadow-outline focus:outline-none"
+                  onClick={handleSubmit}
+                >
                   <svg
                     className="w-6 h-6 -ml-2"
                     fill="none"
@@ -350,7 +413,6 @@ const Register = () => {
                     strokeWidth="2"
                     strokeLinecap="round"
                     strokeLinejoin="round"
-                    onClick={handleSubmit}
                   >
                     <path d="M16 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2" />
                     <circle cx="8.5" cy="7" r="4" />
