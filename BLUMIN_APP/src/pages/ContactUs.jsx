@@ -90,7 +90,6 @@ const ContactUs = () => {
               className="absolute inset-0"
               title="map"
               src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1345.8059479110234!2d78.3682123165372!3d17.43509356232149!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bcb93ee5d7b921f%3A0x9e636e8266c370b0!2sJyothi%20Imperial%2C%20Janardana%20Hills%2C%20Lumbini%20Avenue%2C%20Gachibowli%2C%20Hyderabad%2C%20Telangana%20500081!5e0!3m2!1sen!2sin!4v1713035324548!5m2!1sen!2sin"
-              style={{ filter: "grayscale(1) contrast(1.2) opacity(0.4)" }}
             ></iframe>
 
             {showInfo && (
@@ -109,15 +108,11 @@ const ContactUs = () => {
                     EMAIL
                   </h2>
                   <a
-                    href="mailto:example@email.com"
+                    href="mailto:info@bluminiic.com"
                     className="text-indigo-500 leading-relaxed"
                   >
-                    example@email.com
+                    info@bluminiic.com
                   </a>
-                  <h2 className="title-font font-semibold text-gray-900 tracking-widest text-xs mt-4">
-                    PHONE
-                  </h2>
-                  <p className="leading-relaxed">123-456-7890</p>
                 </div>
                 <button
                   className="absolute top-0 right-0 mr-4 mt-4 text-gray-600"
@@ -162,9 +157,8 @@ const ContactUs = () => {
                   name="name"
                   value={formData.name}
                   onChange={handleChange}
-                  className={`w-full bg-white rounded border ${
-                    errors.name ? "border-red-500" : "border-gray-300"
-                  } focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out`}
+                  className={`w-full bg-white rounded border ${errors.name ? "border-red-500" : "border-gray-300"
+                    } focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out`}
                 />
                 {errors.name && (
                   <span className="text-red-500 text-xs mt-1">
@@ -185,9 +179,8 @@ const ContactUs = () => {
                   name="email"
                   value={formData.email}
                   onChange={handleChange}
-                  className={`w-full bg-white rounded border ${
-                    errors.email ? "border-red-500" : "border-gray-300"
-                  } focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out`}
+                  className={`w-full bg-white rounded border ${errors.email ? "border-red-500" : "border-gray-300"
+                    } focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out`}
                 />
                 {errors.email && (
                   <span className="text-red-500 text-xs mt-1">
@@ -208,9 +201,8 @@ const ContactUs = () => {
                   name="organization"
                   value={formData.organization}
                   onChange={handleChange}
-                  className={`w-full bg-white rounded border ${
-                    errors.organization ? "border-red-500" : "border-gray-300"
-                  } focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out`}
+                  className={`w-full bg-white rounded border ${errors.organization ? "border-red-500" : "border-gray-300"
+                    } focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out`}
                 />
                 {errors.organization && (
                   <span className="text-red-500 text-xs mt-1">
@@ -231,9 +223,8 @@ const ContactUs = () => {
                   name="phone"
                   value={formData.phone}
                   onChange={handleChange}
-                  className={`w-full bg-white rounded border ${
-                    errors.phone ? "border-red-500" : "border-gray-300"
-                  } focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out`}
+                  className={`w-full bg-white rounded border ${errors.phone ? "border-red-500" : "border-gray-300"
+                    } focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out`}
                 />
                 {errors.phone && (
                   <span className="text-red-500 text-xs mt-1">
@@ -253,9 +244,8 @@ const ContactUs = () => {
                   name="message"
                   value={formData.message}
                   onChange={handleChange}
-                  className={`w-full bg-white rounded border ${
-                    errors.message ? "border-red-500" : "border-gray-300"
-                  } focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 h-32 text-base outline-none text-gray-700 py-1 px-3 resize-none leading-6 transition-colors duration-200 ease-in-out`}
+                  className={`w-full bg-white rounded border ${errors.message ? "border-red-500" : "border-gray-300"
+                    } focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 h-32 text-base outline-none text-gray-700 py-1 px-3 resize-none leading-6 transition-colors duration-200 ease-in-out`}
                 ></textarea>
                 {errors.message && (
                   <span className="text-red-500 text-xs mt-1">
