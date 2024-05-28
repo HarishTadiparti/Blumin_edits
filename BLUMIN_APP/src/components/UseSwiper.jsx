@@ -36,10 +36,10 @@ const SwiperComponent = () => {
             <SwiperSlide >
                 <div className="banner flex flex-col-reverse md:rounded-xl rounded-md overflow-hidden md:flex-row justify-between items-stretch md:justify-start md:items-center font-mont bg-[#39a9f1] h-72">
                     <div className="left space-y-4 bg-[#39a9f1] flex flex-col justify-center items-center md:py-auto md:items-start md:ml-12 py-12 md:py-6">
-                        <h1 class="text-xl font-semibold text-center md:text-left md:text-2xl lg:text-4xl md:w-[70%] w-[60%] text-white">
+                        <h1 className="text-xl font-semibold text-center md:text-left md:text-2xl lg:text-4xl md:w-[70%] w-[60%] text-white">
                             Who we are ?
                         </h1>
-                        <p class="w-3/4 text-justify text-xs  md:text-lg font-medium text-white">
+                        <p className="w-3/4 text-justify text-xs  md:text-lg font-medium text-white">
                             BLUMIN is a pioneering initiative aimed at bridging the gap between industry and academia. Our platform connects forward-thinking companies with top-tier universities and colleges to facilitate meaningful collaborations and address the evolving needs of the technology ecosystem.
                         </p>
                         <Link to="/contact-us">
@@ -53,10 +53,10 @@ const SwiperComponent = () => {
             <SwiperSlide >
                 <div className="banner flex flex-col-reverse md:rounded-xl rounded-md overflow-hidden md:flex-row justify-between items-stretch md:justify-start md:items-center font-mont bg-[#38b6ff]  h-72">
                     <div className="left space-y-4 bg-[#38b6ff]  flex flex-col justify-center items-center md:py-auto md:items-start md:ml-12 py-12 md:py-6">
-                        <h1 class="text-xl font-semibold text-center md:text-left md:text-2xl lg:text-4xl md:w-[70%] w-[60%] text-white">
+                        <h1 className="text-xl font-semibold text-center md:text-left md:text-2xl lg:text-4xl md:w-[70%] w-[60%] text-white">
                             What we offer ?
                         </h1>
-                        <p class="w-3/4 text-md md:text-lg text-justify  font-medium text-white">
+                        <p className="w-3/4 text-md md:text-lg text-justify  font-medium text-white">
                             With years of experience in facilitating successful collaborations, BLUMIN brings unparalleled expertise to every partnership.
                         </p>
                         <Link to="/contact-us">
@@ -76,10 +76,10 @@ const SwiperComponent = () => {
             <SwiperSlide >
                 <div className="banner flex flex-col-reverse md:rounded-xl rounded-md overflow-hidden md:flex-row justify-between items-stretch md:justify-start md:items-center font-mont bg-[#38b6ff] h-72">
                     <div className="left space-y-4 bg-[#38b6ff]  flex flex-col justify-center items-center md:py-auto md:items-start md:ml-12 py-12 md:py-6">
-                        <h1 class="text-xl font-semibold text-center md:text-left md:text-2xl lg:text-4xl md:w-[70%] w-[60%] text-white">
+                        <h1 className="text-xl font-semibold text-center md:text-left md:text-2xl lg:text-4xl md:w-[70%] w-[60%] text-white">
                             Why Choose BLUMIN ?
                         </h1>
-                        <p class="w-3/4 text-justify text-xs  md:text-lg font-medium text-white">
+                        <p className="w-3/4 text-justify text-xs  md:text-lg font-medium text-white">
                             At BLUMIN, we understand the dynamic landscape of innovation and the importance of forging meaningful partnerships. Here’s why we stand out:
                         </p>
                         <Link to="/contact-us">

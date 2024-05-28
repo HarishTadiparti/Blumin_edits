@@ -16,7 +16,7 @@ const About = () => {
     };
 
     return (
-        <div className="container mx-auto px-4 mb-8">
+        <div className="container mx-auto py-8 px-4 mb-8">
             <div className='mb-10'>
                 <Heading align='center' weight='bold' size='9' className="text-3xl md:text-5xl">About Us</Heading>
             </div>
@@ -25,8 +25,8 @@ const About = () => {
                 <div className="bg-white rounded-2xl shadow-sm p-8">
                     <h3 className="text-lg md:text-2xl font-semibold text-center mb-6">BLUMIN — OVERVIEW</h3>
                     <div className="flex flex-col md:flex-row items-center justify-center md:justify-between">
-                        <div className="w-full md:w-2/5 mb-4 md:mb-0">
-                            <img alt="Team" className="w-full rounded-lg shadow-md" src={team} />
+                        <div className="w-full h-[400px] md:w-2/5 mb-4 md:mb-0">
+                            <img alt="Team" className="w-full h-full object-cover rounded-lg shadow-md" src={team} />
                         </div>
                         <div className="w-full md:w-2/5 md:ml-8">
                             <p className="text-base md:text-lg leading-relaxed">Connecting academia with industry to drive innovation and create real-world impact. Join us to collaborate, innovate, and make a difference.</p>

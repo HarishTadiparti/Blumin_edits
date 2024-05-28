@@ -1,6 +1,26 @@
 import React, { useState } from "react";
+import { useFormik } from "formik";
+import { contactusSchema } from "../schema/contactusSchema";
+import { Heading } from '@radix-ui/themes';
 
 const ContactUs = () => {
+
+  const onSubmit = (values) => {
+    console.log("Submitted")
+    console.log(values)
+  }
+  const { values, errors, handleBlur, handleChange, handleSubmit, touched } = useFormik({
+    initialValues: {
+      name: "",
+      email: "",
+      phone: "",
+      organization: "",
+      message: ""
+    },
+    validationSchema: contactusSchema,
+    onSubmit
+  });
+
   const [showInfo, setShowInfo] = useState(true);
   const [formData, setFormData] = useState({
     name: "",
@@ -9,80 +29,83 @@ const ContactUs = () => {
     phone: "",
     message: "",
   });
-  const [errors, setErrors] = useState({});
+  // const [errors, setErrors] = useState({});
 
   const closeContainer = () => {
     setShowInfo(false);
   };
 
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData({
-      ...formData,
-      [name]: value,
-    });
-    setErrors({
-      ...errors,
-      [name]: "",
-    });
-  };
+  // const handleChange = (e) => {
+  //   const { name, value } = e.target;
+  //   setFormData({
+  //     ...formData,
+  //     [name]: value,
+  //   });
+  //   setErrors({
+  //     ...errors,
+  //     [name]: "",
+  //   });
+  // };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    const validationErrors = validateForm(formData);
-    setErrors(validationErrors);
-    if (Object.keys(validationErrors).length === 0) {
-      console.log("Form submitted:", formData);
-      setFormData({
-        name: "",
-        email: "",
-        organization: "",
-        phone: "",
-        message: "",
-      });
-    }
-  };
+  // const handleSubmit = (e) => {
+  //   e.preventDefault();
+  //   const validationErrors = validateForm(formData);
+  //   setErrors(validationErrors);
+  //   if (Object.keys(validationErrors).length === 0) {
+  //     console.log("Form submitted:", formData);
+  //     setFormData({
+  //       name: "",
+  //       email: "",
+  //       organization: "",
+  //       phone: "",
+  //       message: "",
+  //     });
+  //   }
+  // };
 
-  const validateForm = (data) => {
-    const newErrors = {};
-    if (!data.name.trim()) {
-      newErrors.name = "Name is required";
-    } else if (data.name.trim().length < 2) {
-      newErrors.name = "Name should be at least 2 characters";
-    }
-    if (!data.email.trim()) {
-      newErrors.email = "Email is required";
-    } else if (!isValidEmail(data.email)) {
-      newErrors.email = "Invalid email address";
-    }
-    if (!data.organization.trim()) {
-      newErrors.organization = "Organization is required";
-    }
-    if (!data.phone.trim()) {
-      newErrors.phone = "Phone number is required";
-    }
-    if (!data.message.trim()) {
-      newErrors.message = "Message is required";
-    }
-    return newErrors;
-  };
+  // const validateForm = (data) => {
+  //   const newErrors = {};
+  //   if (!data.name.trim()) {
+  //     newErrors.name = "Name is required";
+  //   } else if (data.name.trim().length < 2) {
+  //     newErrors.name = "Name should be at least 2 characters";
+  //   }
+  //   if (!data.email.trim()) {
+  //     newErrors.email = "Email is required";
+  //   } else if (!isValidEmail(data.email)) {
+  //     newErrors.email = "Invalid email address";
+  //   }
+  //   if (!data.organization.trim()) {
+  //     newErrors.organization = "Organization is required";
+  //   }
+  //   if (!data.phone.trim()) {
+  //     newErrors.phone = "Phone number is required";
+  //   }
+  //   if (!data.message.trim()) {
+  //     newErrors.message = "Message is required";
+  //   }
+  //   return newErrors;
+  // };
 
-  const isValidEmail = (email) => {
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    return emailRegex.test(email);
-  };
+  // const isValidEmail = (email) => {
+  //   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  //   return emailRegex.test(email);
+  // };
 
   return (
     <>
-      <section className="text-gray-600 body-font py-10 mt-20">
+      <section className="body-font py-4 mt-4">
         <div className="container px-5 mx-auto">
-          <h1 className="text-6xl font-medium title-font text-gray-900 mb-12 text-center">
+          {/* <h1 className="text-6xl font-medium title-font text-gray-900 mb-12 text-center">
             CONTACT US
-          </h1>
+          </h1> */}
+          <div className='mb-4'>
+            <Heading align='center' weight='bold' size='9' className="text-3xl md:text-5xl">Contact Us</Heading>
+          </div>
         </div>
       </section>
       <section className="text-gray-600 body-font relative">
-        <div className="container px-5 py-24 mx-auto flex sm:flex-nowrap flex-wrap">
+        <div className="container px-5 py-4 mx-auto flex sm:flex-nowrap flex-wrap">
           <div className="lg:w-2/3 md:w-1/2 bg-gray-300 rounded-lg overflow-hidden sm:mr-10 p-10 flex items-end justify-start relative">
             <iframe
               width="100%"
@@ -143,7 +166,7 @@ const ContactUs = () => {
               contact form below or directly through our contact details. We
               look forward to hearing from you
             </p>
-            <form onSubmit={handleSubmit}>
+            {/* <form onSubmit={handleSubmit}>
               <div className="relative mb-4">
                 <label
                   htmlFor="name"
@@ -259,7 +282,125 @@ const ContactUs = () => {
               >
                 Send Message
               </button>
+            </form> */}
+            <form onSubmit={handleSubmit}>
+              <div className="relative mb-4">
+                <label
+                  htmlFor="name"
+                  className="leading-7 text-sm text-gray-600"
+                >
+                  Name*
+                </label>
+                <input
+                  type="text"
+                  id="name"
+                  name="name"
+                  value={values.name}
+                  onChange={handleChange}
+                  className={`w-full bg-white rounded border ${errors.name && touched.name ? "border-red-500" : "border-gray-300"
+                    } focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out`}
+                />
+                {errors.name && touched.name ?
+                  <span className="text-red-500 text-xs mt-1">
+                    {errors.name}
+                  </span> : null
+                }
+              </div>
+              <div className="relative mb-4">
+                <label
+                  htmlFor="email"
+                  className="leading-7 text-sm text-gray-600"
+                >
+                  Email*
+                </label>
+                <input
+                  type="email"
+                  id="email"
+                  name="email"
+                  value={values.email}
+                  onChange={handleChange}
+                  className={`w-full bg-white rounded border ${errors.email && touched.email ? "border-red-500" : "border-gray-300"
+                    } focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out`}
+                />
+                {errors.email && touched.email ?
+                  <span className="text-red-500 text-xs mt-1">
+                    {errors.email}
+                  </span> : null
+                }
+              </div>
+              <div className="relative mb-4">
+                <label
+                  htmlFor="organization"
+                  className="leading-7 text-sm text-gray-600"
+                >
+                  Organization*
+                </label>
+                <input
+                  type="text"
+                  id="organization"
+                  name="organization"
+                  value={values.organization}
+                  onChange={handleChange}
+                  className={`w-full bg-white rounded border ${errors.organization && touched.organization ? "border-red-500" : "border-gray-300"
+                    } focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out`}
+                />
+                {errors.organization && touched.organization ?
+                  < span className="text-red-500 text-xs mt-1">
+                    {errors.organization}
+                  </span> : null
+                }
+              </div>
+              <div className="relative mb-4">
+                <label
+                  htmlFor="phone"
+                  className="leading-7 text-sm text-gray-600"
+                >
+                  Phone*
+                </label>
+                <input
+                  type="number"
+                  id="phone"
+                  name="phone"
+                  value={values.phone}
+                  onChange={handleChange}
+                  className={`w-full bg-white rounded border ${errors.phone && touched.phone ? "border-red-500" : "border-gray-300"
+                    } focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out`}
+                />
+                {errors.phone && touched.phone ?
+                  <span className="text-red-500 text-xs mt-1">
+                    {errors.phone}
+                  </span> : null
+                }
+              </div>
+              <div className="relative mb-4">
+                <label
+                  htmlFor="message"
+                  className="leading-7 text-sm text-gray-600"
+                >
+                  Message*
+                </label>
+                <textarea
+                  id="message"
+                  name="message"
+                  value={values.message}
+                  onChange={handleChange}
+                  className={`w-full bg-white rounded border ${errors.message && touched.message ? "border-red-500" : "border-gray-300"
+                    } focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 h-32 text-base outline-none text-gray-700 py-1 px-3 resize-none leading-6 transition-colors duration-200 ease-in-out`}
+                ></textarea>
+                {errors.message && touched.message ?
+                  <span className="text-red-500 text-xs mt-1">
+                    {errors.message}
+                  </span> : null
+                }
+              </div>
+              <button
+                type="submit"
+                className="text-white bg-[#001b71] border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded text-lg"
+              >
+                Send Message
+              </button>
             </form>
+
             <p className="text-xs text-gray-500 mt-3"></p>
           </div>
         </div>

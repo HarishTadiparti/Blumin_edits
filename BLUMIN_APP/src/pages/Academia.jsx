@@ -1,13 +1,17 @@
 import React, { useState } from 'react';
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import 'react-tabs/style/react-tabs.css';
+import { Heading } from '@radix-ui/themes';
+
 
 const Academia = () => {
     const [activeTabIndex, setActiveTabIndex] = useState(0);
     return (
         <div className="min-h-screen py-8 px-4">
             <div className="mb-8">
-                <h1 className="text-3xl font-bold text-center mb-6">Academia</h1>
+                <div className='mb-10'>
+                    <Heading align='center' weight='bold' size='9' className="text-3xl md:text-5xl">Academia</Heading>
+                </div>
                 <Tabs selectedIndex={activeTabIndex} onSelect={index => setActiveTabIndex(index)}>
                     <TabList className="flex justify-center mb-8">
                         <Tab className={`px-4 py-2 rounded-md mr-4 cursor-pointer text-white ${activeTabIndex === 0 ? 'bg-[#064c66]' : 'bg-[#38b6ff] hover:bg-[#39a9f1]'}`}>Universities</Tab>

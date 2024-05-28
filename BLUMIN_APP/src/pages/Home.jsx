@@ -74,22 +74,22 @@ const Home = () => {
                 <motion.div className='mb-10' initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5 }}>
                     <Heading align='center' weight='bold' size='8'>Why Choose BLUMIN</Heading>
                 </motion.div>
-                <div class='flex flex-wrap justify-center px-5'>
-                    <div class='w-full sm:w-auto sm:flex-1 sm:max-w-xs md:max-w-md lg:max-w-lg xl:max-w-xl mx-2 my-4'>
+                <div className='flex flex-wrap justify-center px-5'>
+                    <div className='w-full sm:w-auto sm:flex-1 sm:max-w-xs md:max-w-md lg:max-w-lg xl:max-w-xl mx-2 my-4'>
                         <FeatureCard
                             image='./cardimage1.png'
                             title='Experience'
                             data='With years of experience in facilitating successful collaborations, BLUMIN brings unparalleled expertise to every partnership.'
                         />
                     </div>
-                    <div class='w-full sm:w-auto sm:flex-1 sm:max-w-xs md:max-w-md lg:max-w-lg xl:max-w-xl mx-2 my-4'>
+                    <div className='w-full sm:w-auto sm:flex-1 sm:max-w-xs md:max-w-md lg:max-w-lg xl:max-w-xl mx-2 my-4'>
                         <FeatureCard
                             image='./cardimage2.png'
                             title='Innovation'
                             data='Our commitment to innovation drives us to continually explore new opportunities and push the boundaries of what’s possible.'
                         />
                     </div>
-                    <div class='w-full sm:w-auto sm:flex-1 sm:max-w-xs md:max-w-md lg:max-w-lg xl:max-w-xl mx-2 my-4'>
+                    <div className='w-full sm:w-auto sm:flex-1 sm:max-w-xs md:max-w-md lg:max-w-lg xl:max-w-xl mx-2 my-4'>
                         <FeatureCard
                             image='./cardimage3.png'
                             title='Impact'

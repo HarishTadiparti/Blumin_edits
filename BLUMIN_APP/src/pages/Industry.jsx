@@ -4,6 +4,7 @@ import FAQ from "../components/FAQ";
 import industry1 from "../assets/industry1.jpg";
 import industry2 from "../assets/industry2.jpg";
 import industry3 from "../assets/industry3.jpg";
+import { Heading } from '@radix-ui/themes';
 
 const Industry = () => {
   const [showFAQs, setShowFAQs] = useState([
@@ -23,11 +24,14 @@ const Industry = () => {
   };
   return (
     <>
-      <section className="text-gray-600 body-font py-16">
+      <section className="body-font py-8">
         <div className="container px-5 mx-auto">
-          <h1 className="text-6xl font-medium title-font text-gray-900 mb-12 text-center">
+          {/* <h1 className="text-6xl font-medium title-font text-gray-900 mb-12 text-center">
             INDUSTRY
-          </h1>
+          </h1> */}
+          <div className='mb-10'>
+            <Heading align='center' weight='bold' size='9' className="text-3xl md:text-5xl">Industry</Heading>
+          </div>
         </div>
       </section>
       <div className="container mx-auto px-5 py-10 bg-white rounded-2xl">

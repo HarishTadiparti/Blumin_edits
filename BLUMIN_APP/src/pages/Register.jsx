@@ -1,427 +1,302 @@
 import { Input, Button } from "@material-tailwind/react";
+import { useFormik } from "formik";
 import React, { useState } from "react";
 import { Tab, TabList, TabPanel, Tabs } from "react-tabs";
+import { studentSchema } from "../schema/studentSchema";
+import { professorSchema } from "../schema/professorSchema";
+import { employeeSchema } from "../schema/employeeSchema";
 const Register = () => {
+
+  const onSubmit = (values) => {
+    // console.log(values)
+  }
+  const studentForm = useFormik({
+    initialValues: {
+      firstName: "",
+      lastName: "",
+      email: "",
+      college: "",
+      phone: "",
+      password: "",
+      confirmPassword: ""
+    },
+    validationSchema: studentSchema,
+    onSubmit
+  })
+  const professorForm = useFormik({
+    initialValues: {
+      firstName: "",
+      lastName: "",
+      email: "",
+      university: "",
+      phone: "",
+      password: "",
+      confirmPassword: ""
+    },
+    validationSchema: professorSchema,
+    onSubmit
+  })
+  const employeeForm = useFormik({
+    initialValues: {
+      firstName: "",
+      lastName: "",
+      email: "",
+      company: "",
+      phone: "",
+      password: "",
+      confirmPassword: ""
+    },
+    validationSchema: employeeSchema,
+    onSubmit
+  })
   const [activeTabIndex, setActiveTabIndex] = useState(0);
-  const [password, setPassword] = useState("");
-  const [cpassword, setCpassword] = useState("");
-  const [form, setForm] = useState({
-    catagory: "Student",
-    first_name: "",
-    last_name: "",
-    ins_name: "",
-    email: "",
-    phone: "",
-    password: "",
-  });
-  const [error, setError] = useState({});
+
   const cat = {
     0: "Student",
     1: "Professor",
     2: "Employee",
   };
 
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setForm({
-      ...form,
-      [name]: value,
-    });
-    setError({
-      ...error,
-      [name]: "",
-    });
-  };
-
   const handleCatagory = (index) => {
     setActiveTabIndex(index);
-    setForm({
-      ...form,
-      catagory: cat[index],
-    });
-  };
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-
-    if (password !== cpassword) {
-      setError({
-        ...error,
-        password: "Passwords do not match",
-      });
-      return;
-    } else {
-      setForm({
-        ...form,
-        password: password,
-      });
-    }
-
-    const validationErrors = validateForm(form);
-    console.log("Validation errors:", validationErrors);
-    setError(validationErrors);
-
-    if (Object.keys(validationErrors).length === 0) {
-      console.log("No validation errors. Form data:", form);
-      setForm({
-        catagory: "",
-        first_name: "",
-        last_name: "",
-        ins_name: "",
-        email: "",
-        phone: "",
-        password: "",
-      });
-    }
-  };
-
-  const validateForm = (data) => {
-    let newerrors = {};
-    if (!data.first_name.trim()) {
-      newerrors.first_name = "First Name is required";
-    } else if (data.first_name.trim().length < 2) {
-      newerrors.first_name = "First Name should be at least 2 characters";
-    }
-    if (!data.last_name.trim()) {
-      newerrors.last_name = "Last Name is required";
-    } else if (data.last_name.trim().length < 2) {
-      newerrors.last_name = "Last Name should be at least 2 characters";
-    }
-    if (!data.password.trim()) {
-      newerrors.password = "Password is required";
-    } else if (data.password.trim().length < 8) {
-      newerrors.password = "Password should be at least 8 characters";
-    }
-    if (!data.email.trim()) {
-      newerrors.email = "Email is required";
-    } else if (!isValidEmail(data.email)) {
-      newerrors.email = "Invalid email address";
-    }
-    if (!data.ins_name.trim()) {
-      newerrors.ins_name = "Institute name is required";
-    }
-    if (!data.phone.trim()) {
-      newerrors.phone = "Phone number is required";
-    }
-    return newerrors;
-  };
-
-  const isValidEmail = (email) => {
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    return emailRegex.test(email);
+    // setForm({
+    //   ...form,
+    //   catagory: cat[index],
+    // });
   };
 
   return (
-    <div className="flex flex-col justify-center items-center w-full h-[100vh] my-32">
+    <div className="flex flex-col justify-center items-center w-full h-[100vh]">
       <div className="xl:max-w-3xl bg-white rounded-xl w-full pb-6 sm:pb-10">
         <Tabs selectedIndex={activeTabIndex} onSelect={handleCatagory}>
           <TabList className="grid grid-cols-3 mb-5">
             {["Student", "Professor", "Employee"].map((item, index) => (
               <Tab
                 key={index}
-                className={`cursor-pointer text-xs md:text-lg font-medium text-center py-3 ${
-                  activeTabIndex === index
-                    ? "bg-blue-gray-50 text-[#39a9f1] border-b-2 border-[#39a9f1]"
-                    : "bg-white text-black  hover:bg-slate-100"
-                }`}
+                className={`cursor-pointer text-xs md:text-lg font-medium text-center py-3 ${activeTabIndex === index
+                  ? "bg-blue-gray-50 text-[#39a9f1] border-b-2 border-[#39a9f1]"
+                  : "bg-white text-black  hover:bg-slate-100"
+                  }`}
               >
                 {item}
               </Tab>
             ))}
           </TabList>
           <TabPanel>
-            <h1 className="text-center text-xl sm:text-3xl font-semibold mt-10 mb-10 text-[#39a9f1]">
-              Student Registration Form
-            </h1>
-            <div className="w-full mt-8">
-              <div className="mx-auto max-w-xs sm:max-w-md md:max-w-lg flex flex-col gap-4">
-                {error.first_name && (
-                  <span className="text-red-500">{error.first_name}</span>
-                )}
-                {error.last_name && (
-                  <span className="text-red-500">{error.last_name}</span>
-                )}
-                <div className="flex flex-col sm:flex-row gap-3">
-                  <Input
-                    color="blue"
-                    label="First Name*"
-                    name="first_name"
-                    className="w-full px-5 py-3 rounded-lg font-medium border-2 text-sm focus:outline-none  focus:border-2  focus:outline bg-gray-100 text-black focus:border-black"
-                    onChange={handleChange}
-                  />
-                  <Input
-                    color="blue"
-                    label="Last Name*"
-                    name="last_name"
-                    className="w-full px-5 py-3 rounded-lg font-medium border-2 text-sm focus:outline-none  focus:border-2  focus:outline bg-gray-100 text-black focus:border-black"
-                    onChange={handleChange}
-                  />
+            <section className="px-6">
+              <form className="flex flex-col md:grid md:grid-cols-2 gap-4" onSubmit={studentForm.handleSubmit}>
+                <div>
+                  <label htmlFor="firstName" className="after:content-['*'] after:text-red-600 after:ml-1 ">First Name</label>
+                  <input type="text" id="firstName" name="firstName" className="w-full border py-2 px-3 rounded-md" placeholder="Enter First Name" value={studentForm.values.firstName} onChange={studentForm.handleChange} />
+                  {
+                    studentForm.errors.firstName && studentForm.touched.firstName ? <p className="mt-1 text-sm text-red-600">{studentForm.errors.firstName}</p> : null
+                  }
                 </div>
-                <Input
-                  color="blue"
-                  label="Collage Name*"
-                  name="ins_name"
-                  className="w-full px-5 py-3 rounded-lg  font-medium border-2  text-sm focus:outline-none focus:border-2  focus:outline bg-gray-100 text-black focus:border-black"
-                  onChange={handleChange}
-                />
-                {error.ins_name && (
-                  <span className="text-red-500">{error.ins_name}</span>
-                )}
-                <Input
-                  color="blue"
-                  label="Your Email*"
-                  name="email"
-                  className="w-full px-5 py-3 rounded-lg  font-medium border-2  text-sm focus:outline-none focus:border-2  focus:outline bg-gray-100 text-black focus:border-black"
-                  onChange={handleChange}
-                />
-                {error.email && (
-                  <span className="text-red-500">{error.email}</span>
-                )}
-                <Input
-                  color="blue"
-                  label="Your Phone*"
-                  name="phone"
-                  className="w-full px-5 py-3 rounded-lg  font-medium border-2  text-sm focus:outline-none focus:border-2  focus:outline bg-gray-100 text-black focus:border-black"
-                  onChange={handleChange}
-                />
-                {error.phone && (
-                  <span className="text-red-500">{error.phone}</span>
-                )}
-                <Input
-                  color="blue"
-                  label="Your Password*"
-                  type="password"
-                  name="password"
-                  className="w-full px-5 py-3 rounded-lg  font-medium border-2  text-sm focus:outline-none focus:border-2  focus:outline bg-gray-100 text-black focus:border-black"
-                  onChange={(e) => setPassword(e.target.value)}
-                />
-                {error.password && (
-                  <span className="text-red-500">{error.password}</span>
-                )}
-                <Input
-                  color="blue"
-                  label="Confirm Password*"
-                  type="password"
-                  name="cpassword"
-                  className="w-full px-5 py-3 rounded-lg  font-medium border-2  text-sm focus:outline-none focus:border-2  focus:outline bg-gray-100 text-black focus:border-black"
-                  onChange={(e) => setCpassword(e.target.value)}
-                />
-                <Button
-                  className="mt-5 tracking-wide font-semibold bg-[#39a9f1] text-gray-100 w-full py-4 rounded-lg hover:bg-[#1e88e5] transition-all duration-300 ease-in-out flex items-center justify-center focus:shadow-outline focus:outline-none"
-                  onClick={handleSubmit}
-                >
-                  <svg
-                    className="w-6 h-6 -ml-2"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="2"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  >
-                    <path d="M16 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2" />
-                    <circle cx="8.5" cy="7" r="4" />
-                    <path d="M20 8v6M23 11h-6" />
-                  </svg>
-                  <span className="ml-3">Register</span>
-                </Button>
-              </div>
-            </div>
+                <div>
+                  <label htmlFor="lastName" className="after:content-['*'] after:text-red-600 after:ml-1 ">Last Name</label>
+                  <input type="text" id="lastName" name="lastName" className="w-full border py-2 px-3 rounded-md" placeholder="Enter Last Name" value={studentForm.values.lastName} onChange={studentForm.handleChange} />
+                  {
+                    studentForm.errors.lastName && studentForm.touched.lastName ? <p className="mt-1 text-sm text-red-600">{studentForm.errors.lastName}</p> : null
+                  }
+                </div>
+                <div>
+                  <label htmlFor="email" className="after:content-['*'] after:text-red-600 after:ml-1 ">Email</label>
+                  <input type="email" id="email" name="email" className="w-full border py-2 px-3 rounded-md" placeholder="Enter Email" value={studentForm.values.email} onChange={studentForm.handleChange} />
+                  {
+                    studentForm.errors.email && studentForm.touched.email ? <p className="mt-1 text-sm text-red-600">{studentForm.errors.email}</p> : null
+                  }
+                </div>
+                <div>
+                  <label htmlFor="phone" className="after:content-['*'] after:text-red-600 after:ml-1 ">Phone Number</label>
+                  <input type="number" id="phone" name="phone" className="w-full border py-2 px-3 rounded-md" placeholder="Enter Phone Number" value={studentForm.values.phone} onChange={studentForm.handleChange} />
+                  {
+                    studentForm.errors.phone && studentForm.touched.phone ? <p className="mt-1 text-sm text-red-600">{studentForm.errors.phone}</p> : null
+                  }
+                </div>
+                <div className="md:col-span-2">
+                  <label htmlFor="college" className="after:content-['*'] after:text-red-600 after:ml-1 ">College Name</label>
+                  <input type="text" id="college" name="college" className="w-full border py-2 px-3 rounded-md" placeholder="Enter College Name" value={studentForm.values.college} onChange={studentForm.handleChange} />
+                  {
+                    studentForm.errors.college && studentForm.touched.college ? <p className="mt-1 text-sm text-red-600">{studentForm.errors.college}</p> : null
+                  }
+                </div>
+                <div>
+                  <label htmlFor="password" className="after:content-['*'] after:text-red-600 after:ml-1 ">Password</label>
+                  <input type="password" id="password" name="password" className="w-full border py-2 px-3 rounded-md" placeholder="Enter Password" value={studentForm.values.password} onChange={studentForm.handleChange} />
+                  {
+                    studentForm.errors.password && studentForm.touched.password ? <p className="mt-1 text-sm text-red-600">{studentForm.errors.password}</p> : null
+                  }
+                </div>
+                <div>
+                  <label htmlFor="confirmPassword" className="after:content-['*'] after:text-red-600 after:ml-1 ">Confirm Password</label>
+                  <input type="password" id="confirmPassword" name="confirmPassword" className="w-full border py-2 px-3 rounded-md" placeholder="Enter Confirm Password" value={studentForm.values.confirmPassword} onChange={studentForm.handleChange} />
+                  {
+                    studentForm.errors.confirmPassword && studentForm.touched.confirmPassword ? <p className="mt-1 text-sm text-red-600">{studentForm.errors.confirmPassword}</p> : null
+                  }
+                </div>
+                <button type="submit" className="p-3 col-span-2 bg-[#39a9f1] text-white font-semibold rounded-lg hover:bg-[#1e88e5] transition-all duration-300 ease-in-out">
+                  <div className="flex items-center justify-center gap-4">
+                    <svg
+                      className="w-6 h-6 -ml-2"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="2"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    >
+                      <path d="M16 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2" />
+                      <circle cx="8.5" cy="7" r="4" />
+                      <path d="M20 8v6M23 11h-6" />
+                    </svg>
+                    Register
+                  </div>
+                </button>
+              </form>
+            </section>
           </TabPanel>
           <TabPanel>
-            <h1 className="text-center text-xl sm:text-3xl font-semibold mt-10 mb-10 text-[#39a9f1]">
-              Professor Registration Form
-            </h1>
-            <div className="w-full mt-8">
-              <div className="mx-auto max-w-xs sm:max-w-md md:max-w-lg flex flex-col gap-4">
-                {error.first_name && (
-                  <span className="text-red-500">{error.first_name}</span>
-                )}
-                {error.last_name && (
-                  <span className="text-red-500">{error.last_name}</span>
-                )}
-                <div className="flex flex-col sm:flex-row gap-3">
-                  <Input
-                    color="blue"
-                    label="First Name*"
-                    name="first_name"
-                    className="w-full px-5 py-3 rounded-lg font-medium border-2  text-sm focus:outline-none  focus:border-2  focus:outline bg-gray-100 text-black focus:border-black"
-                    onChange={handleChange}
-                  />
-                  <Input
-                    color="blue"
-                    label="Last Name*"
-                    name="last_name"
-                    className="w-full px-5 py-3 rounded-lg font-medium border-2  text-sm focus:outline-none  focus:border-2  focus:outline bg-gray-100 text-black focus:border-black"
-                    onChange={handleChange}
-                  />
+            <section className="px-6">
+              <form className="flex flex-col md:grid md:grid-cols-2 gap-4" onSubmit={professorForm.handleSubmit}>
+                <div>
+                  <label htmlFor="firstName" className="after:content-['*'] after:text-red-600 after:ml-1 ">First Name</label>
+                  <input type="text" id="firstName" name="firstName" className="w-full border py-2 px-3 rounded-md" placeholder="Enter First Name" value={professorForm.values.firstName} onChange={professorForm.handleChange} />
+                  {
+                    professorForm.errors.firstName && professorForm.touched.firstName ? <p className="mt-1 text-sm text-red-600">{professorForm.errors.firstName}</p> : null
+                  }
                 </div>
-                <Input
-                  color="blue"
-                  label="University Name*"
-                  name="ins_name"
-                  className="w-full px-5 py-3 rounded-lg  font-medium border-2  text-sm focus:outline-none focus:border-2  focus:outline bg-gray-100 text-black focus:border-black"
-                  onChange={handleChange}
-                />
-                {error.ins_name && (
-                  <span className="text-red-500">{error.ins_name}</span>
-                )}
-                <Input
-                  color="blue"
-                  label="Your Email*"
-                  name="email"
-                  className="w-full px-5 py-3 rounded-lg  font-medium border-2  text-sm focus:outline-none focus:border-2  focus:outline bg-gray-100 text-black focus:border-black"
-                  onChange={handleChange}
-                />
-                {error.email && (
-                  <span className="text-red-500">{error.email}</span>
-                )}
-                <Input
-                  color="blue"
-                  label="Your Phone*"
-                  name="phone"
-                  className="w-full px-5 py-3 rounded-lg  font-medium border-2  text-sm focus:outline-none focus:border-2  focus:outline bg-gray-100 text-black focus:border-black"
-                  onChange={handleChange}
-                />
-                {error.phone && (
-                  <span className="text-red-500">{error.phone}</span>
-                )}
-                <Input
-                  color="blue"
-                  label="Your Password*"
-                  type="password"
-                  name="password"
-                  className="w-full px-5 py-3 rounded-lg  font-medium border-2  text-sm focus:outline-none focus:border-2  focus:outline bg-gray-100 text-black focus:border-black"
-                  onChange={(e) => setPassword(e.target.value)}
-                />
-                {error.password && (
-                  <span className="text-red-500">{error.password}</span>
-                )}
-                <Input
-                  color="blue"
-                  label="Confirm Password*"
-                  type="password"
-                  name="cpassword"
-                  className="w-full px-5 py-3 rounded-lg  font-medium border-2  text-sm focus:outline-none focus:border-2  focus:outline bg-gray-100 text-black focus:border-black"
-                  onChange={(e) => setCpassword(e.target.value)}
-                />
-                <Button
-                  className="mt-5 tracking-wide font-semibold bg-[#39a9f1] text-gray-100 w-full py-4 rounded-lg hover:bg-[#1e88e5] transition-all duration-300 ease-in-out flex items-center justify-center focus:shadow-outline focus:outline-none"
-                  onClick={handleSubmit}
-                >
-                  <svg
-                    className="w-6 h-6 -ml-2"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="2"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  >
-                    <path d="M16 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2" />
-                    <circle cx="8.5" cy="7" r="4" />
-                    <path d="M20 8v6M23 11h-6" />
-                  </svg>
-                  <span className="ml-3">Register</span>
-                </Button>
-              </div>
-            </div>
+                <div>
+                  <label htmlFor="lastName" className="after:content-['*'] after:text-red-600 after:ml-1 ">Last Name</label>
+                  <input type="text" id="lastName" name="lastName" className="w-full border py-2 px-3 rounded-md" placeholder="Enter Last Name" value={professorForm.values.lastName} onChange={professorForm.handleChange} />
+                  {
+                    professorForm.errors.lastName && professorForm.touched.lastName ? <p className="mt-1 text-sm text-red-600">{professorForm.errors.lastName}</p> : null
+                  }
+                </div>
+                <div>
+                  <label htmlFor="email" className="after:content-['*'] after:text-red-600 after:ml-1 ">Email</label>
+                  <input type="email" id="email" name="email" className="w-full border py-2 px-3 rounded-md" placeholder="Enter Email" value={professorForm.values.email} onChange={professorForm.handleChange} />
+                  {
+                    professorForm.errors.email && professorForm.touched.email ? <p className="mt-1 text-sm text-red-600">{professorForm.errors.email}</p> : null
+                  }
+                </div>
+                <div>
+                  <label htmlFor="phone" className="after:content-['*'] after:text-red-600 after:ml-1 ">Phone Number</label>
+                  <input type="number" id="phone" name="phone" className="w-full border py-2 px-3 rounded-md" placeholder="Enter Phone Number" value={professorForm.values.phone} onChange={professorForm.handleChange} />
+                  {
+                    professorForm.errors.phone && professorForm.touched.phone ? <p className="mt-1 text-sm text-red-600">{professorForm.errors.phone}</p> : null
+                  }
+                </div>
+                <div className="md:col-span-2">
+                  <label htmlFor="university" className="after:content-['*'] after:text-red-600 after:ml-1 ">University Name</label>
+                  <input type="text" id="university" name="university" className="w-full border py-2 px-3 rounded-md" placeholder="Enter University Name" value={professorForm.values.university} onChange={professorForm.handleChange} />
+                  {
+                    professorForm.errors.university && professorForm.touched.university ? <p className="mt-1 text-sm text-red-600">{professorForm.errors.university}</p> : null
+                  }
+                </div>
+                <div>
+                  <label htmlFor="password" className="after:content-['*'] after:text-red-600 after:ml-1 ">Password</label>
+                  <input type="password" id="password" name="password" className="w-full border py-2 px-3 rounded-md" placeholder="Enter Password" value={professorForm.values.password} onChange={professorForm.handleChange} />
+                  {
+                    professorForm.errors.password && professorForm.touched.password ? <p className="mt-1 text-sm text-red-600">{professorForm.errors.password}</p> : null
+                  }
+                </div>
+                <div>
+                  <label htmlFor="confirmPassword" className="after:content-['*'] after:text-red-600 after:ml-1 ">Confirm Password</label>
+                  <input type="password" id="confirmPassword" name="confirmPassword" className="w-full border py-2 px-3 rounded-md" placeholder="Enter Confirm Password" value={professorForm.values.confirmPassword} onChange={professorForm.handleChange} />
+                  {
+                    professorForm.errors.confirmPassword && professorForm.touched.confirmPassword ? <p className="mt-1 text-sm text-red-600">{professorForm.errors.confirmPassword}</p> : null
+                  }
+                </div>
+                <button type="submit" className="p-3 col-span-2 bg-[#39a9f1] text-white font-semibold rounded-lg hover:bg-[#1e88e5] transition-all duration-300 ease-in-out">
+                  <div className="flex items-center justify-center gap-4">
+                    <svg
+                      className="w-6 h-6 -ml-2"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="2"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    >
+                      <path d="M16 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2" />
+                      <circle cx="8.5" cy="7" r="4" />
+                      <path d="M20 8v6M23 11h-6" />
+                    </svg>
+                    Register
+                  </div>
+                </button>
+              </form>
+            </section>
           </TabPanel>
           <TabPanel>
-            <h1 className="text-center text-xl sm:text-3xl font-semibold mt-10 mb-10 text-[#39a9f1]">
-              Employee Registration Form
-            </h1>
-            <div className="w-full mt-8">
-              <div className="mx-auto max-w-xs sm:max-w-md md:max-w-lg flex flex-col gap-4">
-                {error.first_name && (
-                  <span className="text-red-500">{error.first_name}</span>
-                )}
-                {error.last_name && (
-                  <span className="text-red-500">{error.last_name}</span>
-                )}
-                <div className="flex flex-col sm:flex-row gap-3">
-                  <Input
-                    color="blue"
-                    label="First Name*"
-                    name="first_name"
-                    className="w-full px-5 py-3 rounded-lg font-medium border-2 text-sm focus:outline-none  focus:border-2  focus:outline bg-gray-100 text-black focus:border-black"
-                    onChange={handleChange}
-                  />
-                  <Input
-                    color="blue"
-                    label="Last Name*"
-                    name="last_name"
-                    className="w-full px-5 py-3 rounded-lg font-medium border-2  text-sm focus:outline-none  focus:border-2  focus:outline bg-gray-100 text-black focus:border-black"
-                    onChange={handleChange}
-                  />
+            <section className="px-6">
+              <form className="flex flex-col md:grid md:grid-cols-2 gap-4" onSubmit={employeeForm.handleSubmit}>
+                <div>
+                  <label htmlFor="firstName" className="after:content-['*'] after:text-red-600 after:ml-1 ">First Name</label>
+                  <input type="text" id="firstName" name="firstName" className="w-full border py-2 px-3 rounded-md" placeholder="Enter First Name" value={employeeForm.values.firstName} onChange={employeeForm.handleChange} />
+                  {
+                    employeeForm.errors.firstName && employeeForm.touched.firstName ? <p className="mt-1 text-sm text-red-600">{employeeForm.errors.firstName}</p> : null
+                  }
                 </div>
-                <Input
-                  color="blue"
-                  label="Company Name*"
-                  name="ins_name"
-                  className="w-full px-5 py-3 rounded-lg  font-medium border-2  text-sm focus:outline-none focus:border-2  focus:outline bg-gray-100 text-black focus:border-black"
-                  onChange={handleChange}
-                />
-                {error.ins_name && (
-                  <span className="text-red-500">{error.ins_name}</span>
-                )}
-                <Input
-                  color="blue"
-                  label="Your Email*"
-                  name="email"
-                  className="w-full px-5 py-3 rounded-lg  font-medium border-2  text-sm focus:outline-none focus:border-2  focus:outline bg-gray-100 text-black focus:border-black"
-                  onChange={handleChange}
-                />
-                {error.email && (
-                  <span className="text-red-500">{error.email}</span>
-                )}
-                <Input
-                  color="blue"
-                  label="Your Phone*"
-                  name="phone"
-                  className="w-full px-5 py-3 rounded-lg  font-medium border-2  text-sm focus:outline-none focus:border-2  focus:outline bg-gray-100 text-black focus:border-black"
-                  onChange={handleChange}
-                />
-                {error.phone && (
-                  <span className="text-red-500">{error.phone}</span>
-                )}
-                <Input
-                  color="blue"
-                  label="Your Password*"
-                  type="password"
-                  name="password"
-                  className="w-full px-5 py-3 rounded-lg  font-medium border-2  text-sm focus:outline-none focus:border-2  focus:outline bg-gray-100 text-black focus:border-black"
-                  onChange={(e) => setPassword(e.target.value)}
-                />
-                {error.password && (
-                  <span className="text-red-500">{error.password}</span>
-                )}
-                <Input
-                  color="blue"
-                  label="Confirm Password*"
-                  type="password"
-                  name="cpassword"
-                  className="w-full px-5 py-3 rounded-lg  font-medium border-2  text-sm focus:outline-none focus:border-2  focus:outline bg-gray-100 text-black focus:border-black"
-                  onChange={(e) => setCpassword(e.target.value)}
-                />
-                <Button
-                  className="mt-5 tracking-wide font-semibold bg-[#39a9f1] text-gray-100 w-full py-4 rounded-lg hover:bg-[#1e88e5] transition-all duration-300 ease-in-out flex items-center justify-center focus:shadow-outline focus:outline-none"
-                  onClick={handleSubmit}
-                >
-                  <svg
-                    className="w-6 h-6 -ml-2"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="2"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  >
-                    <path d="M16 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2" />
-                    <circle cx="8.5" cy="7" r="4" />
-                    <path d="M20 8v6M23 11h-6" />
-                  </svg>
-                  <span className="ml-3">Register</span>
-                </Button>
-              </div>
-            </div>
+                <div>
+                  <label htmlFor="lastName" className="after:content-['*'] after:text-red-600 after:ml-1 ">Last Name</label>
+                  <input type="text" id="lastName" name="lastName" className="w-full border py-2 px-3 rounded-md" placeholder="Enter Last Name" value={employeeForm.values.lastName} onChange={employeeForm.handleChange} />
+                  {
+                    employeeForm.errors.lastName && employeeForm.touched.lastName ? <p className="mt-1 text-sm text-red-600">{employeeForm.errors.lastName}</p> : null
+                  }
+                </div>
+                <div>
+                  <label htmlFor="email" className="after:content-['*'] after:text-red-600 after:ml-1 ">Email</label>
+                  <input type="email" id="email" name="email" className="w-full border py-2 px-3 rounded-md" placeholder="Enter Email" value={employeeForm.values.email} onChange={employeeForm.handleChange} />
+                  {
+                    employeeForm.errors.email && employeeForm.touched.email ? <p className="mt-1 text-sm text-red-600">{employeeForm.errors.email}</p> : null
+                  }
+                </div>
+                <div>
+                  <label htmlFor="phone" className="after:content-['*'] after:text-red-600 after:ml-1 ">Phone Number</label>
+                  <input type="number" id="phone" name="phone" className="w-full border py-2 px-3 rounded-md" placeholder="Enter Phone Number" value={employeeForm.values.phone} onChange={employeeForm.handleChange} />
+                  {
+                    employeeForm.errors.phone && employeeForm.touched.phone ? <p className="mt-1 text-sm text-red-600">{employeeForm.errors.phone}</p> : null
+                  }
+                </div>
+                <div className="md:col-span-2">
+                  <label htmlFor="company" className="after:content-['*'] after:text-red-600 after:ml-1 ">Company Name</label>
+                  <input type="text" id="company" name="company" className="w-full border py-2 px-3 rounded-md" placeholder="Enter Company Name" value={employeeForm.values.company} onChange={employeeForm.handleChange} />
+                  {
+                    employeeForm.errors.company && employeeForm.touched.company ? <p className="mt-1 text-sm text-red-600">{employeeForm.errors.company}</p> : null
+                  }
+                </div>
+                <div>
+                  <label htmlFor="password" className="after:content-['*'] after:text-red-600 after:ml-1 ">Password</label>
+                  <input type="password" id="password" name="password" className="w-full border py-2 px-3 rounded-md" placeholder="Enter Password" value={employeeForm.values.password} onChange={employeeForm.handleChange} />
+                  {
+                    employeeForm.errors.password && employeeForm.touched.password ? <p className="mt-1 text-sm text-red-600">{employeeForm.errors.password}</p> : null
+                  }
+                </div>
+                <div>
+                  <label htmlFor="confirmPassword" className="after:content-['*'] after:text-red-600 after:ml-1 ">Confirm Password</label>
+                  <input type="password" id="confirmPassword" name="confirmPassword" className="w-full border py-2 px-3 rounded-md" placeholder="Enter Confirm Password" value={employeeForm.values.confirmPassword} onChange={employeeForm.handleChange} />
+                  {
+                    employeeForm.errors.confirmPassword && employeeForm.touched.confirmPassword ? <p className="mt-1 text-sm text-red-600">{employeeForm.errors.confirmPassword}</p> : null
+                  }
+                </div>
+                <button type="submit" className="p-3 col-span-2 bg-[#39a9f1] text-white font-semibold rounded-lg hover:bg-[#1e88e5] transition-all duration-300 ease-in-out">
+                  <div className="flex items-center justify-center gap-4">
+                    <svg
+                      className="w-6 h-6 -ml-2"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="2"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    >
+                      <path d="M16 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2" />
+                      <circle cx="8.5" cy="7" r="4" />
+                      <path d="M20 8v6M23 11h-6" />
+                    </svg>
+                    Register
+                  </div>
+                </button>
+              </form>
+            </section>
           </TabPanel>
         </Tabs>
       </div>
