@@ -34,19 +34,22 @@ const Navbar = () => {
         </div>
 
         <ul
-          className={`md:flex md:items-center md:pb-0 pb-12 absolute md:static bg-gray-100 md:bg-white md:z-auto z-[-1] left-0 w-full md:w-auto md:pl-0  pl-9 transition-all duration-500 ease-in ${
-            open ? "top-12" : "top-[-490px]"
-          }`}
+          className={`md:flex md:items-center md:pb-0 pb-12 absolute md:static bg-gray-100 md:bg-white md:z-auto z-[-1] left-0 w-full md:w-auto md:pl-0  pl-9 transition-all duration-500 ease-in ${open ? "top-12" : "top-[-490px]"
+            }`}
         >
           {Links.map((item, index) => (
             <li key={index} className="md:ml-8 md:my-0 my-7 font-semibold">
-              <Link
+              {/* <Link
                 to={item.link}
                 onClick={() => setOpen(false)}
                 className="text-gray-800 hover:text-gray-500 duration-500"
               >
                 {item.name}
-              </Link>
+              </Link> */}
+              <a href={item.link}
+                onClick={() => setOpen(false)}
+                className="text-gray-800 hover:text-gray-500 duration-500"
+              >{item.name}</a>
             </li>
           ))}
         </ul>
